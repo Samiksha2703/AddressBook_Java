@@ -5,11 +5,11 @@ public class Contact {
         private final String address;
         private final String city;
         private final String state;
-        private final long zip;
+        private final int zip;
         private final long phoneNumber;
         private final String email;
 
-        public Contact(String firstName, String lastName, String address, String city, String state, long zip, long phoneNumber, String email){
+        public Contact(String firstName, String lastName, String address, String city, String state, int zip, long phoneNumber, String email){
             this.firstName = firstName;
             this.lastName = lastName;
             this.address = address;
@@ -21,6 +21,6 @@ public class Contact {
         }
 
         public String toString(){
-            return "First Name : " +this.firstName + " Last Name : " +this.lastName + " Address : " +this.address + " City : " +city + " State : " +this.state + " Zip : " +this.zip + " Phone Number : " +this.phoneNumber + " Email : " +this.email;
+            return "First Name : " +this.firstName + "\nLast Name : " +this.lastName + "\nAddress : " +this.address + "\nCity : " +city + "\nState : " +this.state + "\nZip : " +this.zip + "\nPhone Number : " +this.phoneNumber + "\nEmail : " +this.email;
         }
     }

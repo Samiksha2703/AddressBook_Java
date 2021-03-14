@@ -6,6 +6,9 @@ public class AddressBook {
     public static Scanner sc = new Scanner(System.in);
 
     public void addContact () {
+        System.out.println("Enter Number of person you want to add");
+        int numOfPerson = sc.nextInt();
+        for (int add = 0; add < numOfPerson; add++){
         System.out.println("Enter First Name");
         String first = sc.next();
         sc.nextLine();
@@ -29,8 +32,10 @@ public class AddressBook {
         Contact contact = new Contact(first, last, address, city, state, zip, phone, email);
         contacts.put(indexValue, contact);
         indexValue++;
+        }
         System.out.println("Contact added Successfully");
     }
+
     public void deleteContact() {
         if (contacts.isEmpty()) {
             System.out.println("Contact list is empty.");

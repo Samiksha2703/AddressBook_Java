@@ -45,17 +45,56 @@ public class AddressBook {
         if (contacts.isEmpty())
                 return false;
         else {
-            System.out.println("\nAdd contact again with different first name.");
             Iterator<Integer> itr = contacts.keySet().iterator();
             while (itr.hasNext()) {
                 int key = itr.next();
                 if (contacts.get(key).firstName.equals(checkName)) {
+                    System.out.println("\nAdd contact again with different first name.");
                     return true;
                 }
             }
         }
         return false;
     }
+
+    public void editContact(){
+        if (contacts.isEmpty()) {
+            System.out.println("Contact list is empty.");
+        } else {
+            System.out.println("Enter the first name to edit contact.");
+            String name = sc.next();
+            Iterator<Integer> itr = contacts.keySet().iterator();
+            while(itr.hasNext()) {
+                int key = itr.next();
+                if (contacts.get(key).firstName.equals(name)) {
+                    System.out.println("\nEnter First Name to Edit");
+                    String first = sc.next();
+                    sc.nextLine();
+                    System.out.println("Enter Last Name to Edit");
+                    String last = sc.next();
+                    sc.nextLine();
+                    System.out.println("Enter Address to Edit");
+                    String address = sc.next();
+                    sc.nextLine();
+                    System.out.println("Enter City to Edit");
+                    String city = sc.nextLine();
+                    System.out.println("Enter State to Edit");
+                    String state = sc.next();
+                    sc.nextLine();
+                    System.out.println("Enter Zip Code to Edit");
+                    int zip = sc.nextInt();
+                    System.out.println("Enter Phone Number to Edit");
+                    long phone = sc.nextLong();
+                    System.out.println("Enter E-mail to Edit");
+                    String email = sc.next();
+                    Contact contact = new Contact(first, last, address, city, state, zip, phone, email);
+                    contacts.put(key, contact);
+                    System.out.println("Contact edited with given first name : "+name);
+                }
+            }
+        }
+    }
+
     public void deleteContact() {
         if (contacts.isEmpty()) {
             System.out.println("Contact list is empty.");
@@ -72,17 +111,20 @@ public class AddressBook {
             }
         }
     }
-    public static void main (String [] args){
-    System.out.println("-----Welcome to Address Book Program-----\n");
+    public static void main (String [] args) {
+        System.out.println("-----Welcome to Address Book Program-----\n");
         int choice = 1;
         do {
-            System.out.println("Enter your choice\n1. Add contact\n2. Delete Contact\n3. Exit");
+            System.out.println("Enter your choice\n1. Add Contact\n2. Edit Contact\n3. Delete Contact\n3. Exit");
             int userInput = sc.nextInt();
-            switch (userInput){
-                case 1 :
+            switch (userInput) {
+                case 1:
                     addressbook.addContact();
                     break;
-                case 2 :
+                case 2:
+                    addressbook.editContact();
+                    break;
+                case 3:
                     addressbook.deleteContact();
                     break;
                 default:
@@ -91,6 +133,7 @@ public class AddressBook {
                     break;
             }
         }
-            while(choice != 0);
+        while (choice != 0);
         }
     }
+

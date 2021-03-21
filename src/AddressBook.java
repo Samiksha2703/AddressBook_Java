@@ -26,6 +26,12 @@ public class AddressBook {
                 case 4:
                     addressbook.createNewAddressBook();
                     break;
+                case 5:
+                    addressbook.searchPersonByCity();
+                    break;
+                case 6:
+                    addressbook.searchPersonByState();
+                    break;
                 default:
                     System.out.println("You press exit.\nThank You!");
                     choice = 0;
@@ -147,6 +153,31 @@ public class AddressBook {
             AddressBookList addressBookListobj = new AddressBookList(addressBookName);
             }
 
+    public void searchPersonByCity(){
+        System.out.println("Enter the city to search person.");
+        String cityName = sc.next();
+        System.out.println("Person Search by " +cityName);
+        Iterator<Integer> itr = contacts.keySet().iterator();
+        while (itr.hasNext()) {
+            int key = itr.next();
+            if (contacts.get(key).city.equals(cityName)) {
+                System.out.println(contacts.get(key).firstName +" " + contacts.get(key).lastName);
+            }
+        }
+    }
+
+    public void searchPersonByState(){
+        System.out.println("Enter the state to search person.");
+        String stateName = sc.next();
+        System.out.println("Person Search by " +stateName);
+        Iterator<Integer> itr = contacts.keySet().iterator();
+        while (itr.hasNext()) {
+            int key = itr.next();
+            if (contacts.get(key).state.equals(stateName)) {
+                System.out.println(contacts.get(key).firstName +" " + contacts.get(key).lastName);
+            }
+        }
+    }
 
     public static void main(String[] args) {
         System.out.println("-----Welcome to Address Book Program-----\n");

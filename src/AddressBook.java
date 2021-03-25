@@ -12,7 +12,8 @@ public class AddressBook {
     public void menu() {
         int choice = 1;
         do {
-            System.out.println("Enter your choice\n1. Add Contact\n2. Edit Contact\n3. Delete Contact\n4. Create New AddressBook\n0. Exit");
+            System.out.println("Enter your choice\n1. Add Contact\n2. Edit Contact\n3. Delete Contact\n4. Create New AddressBook" +
+                    "\n5. Search Person By City\n6. Search Person By City\n7. Count Person By City\n8. Count Person By State\n0. Exit");
             int userInput = sc.nextInt();
             switch (userInput) {
                 case 1:
@@ -32,6 +33,12 @@ public class AddressBook {
                     break;
                 case 6:
                     addressbook.searchPersonByState();
+                    break;
+                case 7:
+                    addressbook.countPersonByCity();
+                    break;
+                case 8:
+                    addressbook.countPersonByState();
                     break;
                 default:
                     System.out.println("You press exit.\nThank You!");
@@ -180,6 +187,20 @@ public class AddressBook {
         for (Enumeration i = dictWithState.keys(); i.hasMoreElements(); ) {
             System.out.println(i.nextElement());
         }
+    }
+
+    public void countPersonByState() {
+        Collection<Contact> values = contacts.values();
+        ArrayList<Contact> conatactlist
+                = new ArrayList<>(values);
+        System.out.println(conatactlist.stream().collect(Collectors.groupingBy((Contact C) -> C.getState(),Collectors.counting())));
+    }
+
+    public void countPersonByCity() {
+        Collection<Contact> values = contacts.values();
+        ArrayList<Contact> conatactlist
+                = new ArrayList<>(values);
+        System.out.println(conatactlist.stream().collect(Collectors.groupingBy((Contact C) -> C.getCity(),Collectors.counting())));
     }
 
     public static void main(String[] args) {

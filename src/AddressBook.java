@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AddressBook {
     public int indexValue = 1;
@@ -148,34 +149,36 @@ public class AddressBook {
     }
 
     public void createNewAddressBook() {
-            System.out.println("Enter the name for Address Book");
-            String addressBookName = sc.next();
-            AddressBookList addressBookListobj = new AddressBookList(addressBookName);
-            }
+        System.out.println("Enter the name for Address Book");
+        String addressBookName = sc.next();
+        AddressBookList addressBookListobj = new AddressBookList(addressBookName);
+    }
 
-    public void searchPersonByCity(){
+    public void searchPersonByCity() {
         System.out.println("Enter the city to search person.");
         String cityName = sc.next();
-        System.out.println("Person Search by " +cityName);
-        Iterator<Integer> itr = contacts.keySet().iterator();
-        while (itr.hasNext()) {
-            int key = itr.next();
-            if (contacts.get(key).city.equals(cityName)) {
-                System.out.println(contacts.get(key).firstName +" " + contacts.get(key).lastName);
-            }
+        System.out.println("Person Search by " + cityName);
+        Collection<Contact> values = contacts.values();
+        ArrayList<Contact> conatactlist
+                = new ArrayList<>(values);
+        Dictionary dictWithCity = new Hashtable();
+        conatactlist.stream().filter(n -> n.city.contains(cityName)).forEach(contactlist -> dictWithCity.put(contactlist.firstName, cityName));
+        for (Enumeration i = dictWithCity.keys(); i.hasMoreElements(); ) {
+            System.out.println(i.nextElement());
         }
     }
 
-    public void searchPersonByState(){
+    public void searchPersonByState() {
         System.out.println("Enter the state to search person.");
         String stateName = sc.next();
-        System.out.println("Person Search by " +stateName);
-        Iterator<Integer> itr = contacts.keySet().iterator();
-        while (itr.hasNext()) {
-            int key = itr.next();
-            if (contacts.get(key).state.equals(stateName)) {
-                System.out.println(contacts.get(key).firstName +" " + contacts.get(key).lastName);
-            }
+        System.out.println("Person Search by " + stateName);
+        Collection<Contact> values = contacts.values();
+        ArrayList<Contact> conatactlist
+                = new ArrayList<>(values);
+        Dictionary dictWithState = new Hashtable();
+        conatactlist.stream().filter(n -> n.state.contains(stateName)).forEach(contactlist -> dictWithState.put(contactlist.firstName, stateName));
+        for (Enumeration i = dictWithState.keys(); i.hasMoreElements(); ) {
+            System.out.println(i.nextElement());
         }
     }
 
